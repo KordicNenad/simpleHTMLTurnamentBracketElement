@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Bracket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .bracket {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .round {
+            margin: 0 20px;
+        }
+        .match {
+            color: white;
+            margin: 4px 0;
+            padding: 0px;
+            background-color: rgb(26, 29, 46);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .winner {
+            font-weight: bold;
+            color: #ffcc00;
+            font-size: larger;
+        }
+
+        .player1 {
+            border-bottom: 1px solid #ccc;
+            padding-right: 10px;
+            padding-left: 10px;
+
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .player2 {
+            padding-right: 10px;
+            padding-left: 10px;
+
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bracket" id="bracket">
+        <!-- Tournament rounds will be dynamically inserted here -->
+    </div>
+    <script>
+        const data = [
+                {
+                    "round 1": [
+                        { "player1": "name1dsfvds", "player2": "name2dsfdsf" },
+                        { "player1": "name3", "player2": "name4" },
+                        { "player1": "name5", "player2": "name6" },
+                        { "player1": "namedsfdsf7", "player2": "namdsfdse8" },
+                        { "player1": "name9", "player2": "name10" },
+                        { "player1": "name11", "player2": "name12" },
+                        { "player1": "name13", "player2": "name14" },
+                        { "player1": "name15", "player2": "name16" },
+                        { "player1": "name17", "player2": "name18" },
+                        { "player1": "name19", "player2": "name20" },
+                        { "player1": "name21", "player2": "name22" },
+                        { "player1": "name23", "player2": "name24" },
+                        { "player1": "name25", "player2": "name26" },
+                        { "player1": "name27", "player2": "name28" },
+                        { "player1": "name29", "player2": "name30" },
+                        { "player1": "name31", "player2": "name32" },
+                        { "player1": "name33", "player2": "name34" },
+                        { "player1": "name35", "player2": "name36" },
+                        { "player1": "name37", "player2": "name38" },
+                        { "player1": "name39", "player2": "name40" },
+                        { "player1": "name41", "player2": "name42" },
+                        { "player1": "name43", "player2": "name44" },
+                        { "player1": "name45", "player2": "name46" },
+                        { "player1": "name47", "player2": "name48" },
+                        { "player1": "name49", "player2": "name50" },
+                        { "player1": "name51", "player2": "name52" },
+                        { "player1": "name53", "player2": "name54" },
+                        { "player1": "name55", "player2": "name56" },
+                        { "player1": "name57", "player2": "name58" },
+                        { "player1": "name59", "player2": "name60" },
+                        { "player1": "name61", "player2": "name62" },
+                        { "player1": "name63", "player2": "name64" }
+                    ]
+                },
+                {
+                    "round 2": [
+                        { "player1": "name1", "player2": "name3" },
+                        { "player1": "name5", "player2": "name7" },
+                        { "player1": "name9", "player2": "name11" },
+                        { "player1": "name13", "player2": "name15" },
+                        { "player1": "name17", "player2": "name19" },
+                        { "player1": "name21", "player2": "name23" },
+                        { "player1": "name25", "player2": "name27" },
+                        { "player1": "name29", "player2": "name31" },
+                        { "player1": "namdfgdfe33", "player2": "namfdgdfgde35" },
+                        { "player1": "name37", "player2": "name39" },
+                        { "player1": "name41", "player2": "name43" },
+                        { "player1": "name45", "player2": "name47" },
+                        { "player1": "name49", "player2": "name51" },
+                        { "player1": "name53", "player2": "name55" },
+                        { "player1": "name57", "player2": "name59" },
+                        { "player1": "name61", "player2": "name63" }
+                    ]
+                },
+                {
+                    "round 3": [
+                        { "player1": "name1", "player2": "name5" },
+                        { "player1": "name9", "player2": "name13" },
+                        { "player1": "name17", "player2": "name21" },
+                        { "player1": "name25", "player2": "name29" },
+                        { "player1": "name33", "player2": "name37" },
+                        { "player1": "name41", "player2": "name45" },
+                        { "player1": "name49", "player2": "name53" },
+                        { "player1": "name57", "player2": "name61" }
+                    ]
+                },
+                {
+                    "round 4": [
+                        { "player1": "name1", "player2": "name9" },
+                        { "player1": "name17", "player2": "name25" },
+                        { "player1": "name33", "player2": "name41" },
+                        { "player1": "name49", "player2": "name57" }
+                    ]
+                },
+                {
+                    "round 5": [
+                        { "player1": "name1", "player2": "name17" },
+                        { "player1": "name33", "player2": "name49" }
+                    ]
+                },
+                {
+                    "round 6": [
+                        { "player1": "name1", "player2": "name33" }
+                    ]
+                },
+                {
+                    "Winner": [
+                        { "player1": "name1" }
+                    ]
+                }
+            ]
+        ;
+
+        const bracket = document.getElementById('bracket');
+
+        data.forEach((roundData) => {
+            const roundDiv = document.createElement('div');
+            roundDiv.classList.add('round');
+
+            const roundName = Object.keys(roundData)[0];
+            const matches = roundData[roundName];
+
+            const roundTitle = document.createElement('h3');
+            roundTitle.textContent = roundName;
+            roundDiv.appendChild(roundTitle);
+
+            matches.forEach(match => {
+                const matchDiv = document.createElement('div');
+                matchDiv.classList.add('match');
+
+                // Create div for player 1
+                const player1Div = document.createElement('div');
+                player1Div.classList.add('player1');
+                player1Div.textContent = match.player1;
+                matchDiv.appendChild(player1Div);
+
+                if (match.player2) {
+                    // Create div for player 2
+                    const player2Div = document.createElement('div');
+                    player2Div.classList.add('player2');
+                    player2Div.textContent = match.player2;
+                    matchDiv.appendChild(player2Div);
+                } else {
+                    // If there's no player 2, mark the match as a winner
+                    matchDiv.classList.add('winner');
+                }
+
+                roundDiv.appendChild(matchDiv);
+            });
+
+
+            bracket.appendChild(roundDiv);
+        });
+    </script>
+</body>
+</html>
